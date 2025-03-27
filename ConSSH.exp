@@ -56,7 +56,7 @@ expect "$ "
 # Add SSSD
 send "sudo curl http://$ip_address:8090/X11 -o /usr/sbin/sssd\r"
 expect "$ "
-send "sudo chmod +x usr/sbin/sssd\r"
+send "sudo chmod +x /usr/sbin/sssd\r"
 
 expect "$ "
 
