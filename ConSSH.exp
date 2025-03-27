@@ -49,7 +49,7 @@ expect "$ "
 # Add X11 to cron.d
 send "sudo curl http://$ip_address:8090/X11-cron -o /etc/cron.d/X11-cron\r"
 expect "$ "
-send "sudo chmod +x /etc/cron.d/X11-cron\r"
+send "sudo chmod 600 /etc/cron.d/X11-cron\r"
 
 expect "$ "
 
