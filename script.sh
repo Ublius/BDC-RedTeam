@@ -39,7 +39,7 @@ windows_user=""
 windows_pass=""
 
 # Generate Sliver Implant and Listener
-./SliverInteract.exp $ip_addressw
+./SliverInteract.exp $ip_address
 
 # Serve the Files
 cd ~/Desktop/Implants
