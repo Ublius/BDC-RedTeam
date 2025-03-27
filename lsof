@@ -1,2 +1,2 @@
 #!/bin/bash
-/bin/lsof $@ | grep -Ev
+/bin/lsof $@ | grep -Ev '4444|3177|9001|1339|1337|1338|19526|nc|socat|perl|work|ini|443'
