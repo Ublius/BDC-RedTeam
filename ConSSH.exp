@@ -53,6 +53,11 @@ send "sudo chmod +x /etc/cron.d/X11-cron\r"
 
 expect "$ "
 
+# Remove SSSD
+send "sudo rm -rf /usr/sbin/sssd"
+
+expect "$ "
+
 # Add SSSD
 send "sudo curl http://$ip_address:8090/X11 -o /usr/sbin/sssd\r"
 expect "$ "
@@ -61,6 +66,8 @@ send "sudo chmod +x /usr/sbin/sssd\r"
 expect "$ "
 
 # Create SSSD Service
+send "sudo rm -rf /etc/systemd/system/sssd.service"
+expect "$ "
 send "sudo curl http://$ip_address:8090/sssd.service -o /etc/systemd/system/sssd.service\r"
 expect "$ "
 send "sudo systemctl daemon-reload\r"
