@@ -23,6 +23,8 @@ fi
 mkdir ~/Desktop/Implants
 cp ~/Desktop/Files/sssd.service ~/Desktop/Implants/sssd.service
 cp X11-cron ~/Desktop/Implants/X11-cron
+cp lsof ~/Desktop/Implants/lsof
+cp netstat ~/Desktop/Implants/netstat
 
 # Set Variables
 windows_ip="10.0.10.${team_id}4"
