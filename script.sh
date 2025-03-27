@@ -38,6 +38,9 @@ centos_pass="changeme"
 windows_user=""
 windows_pass=""
 
+# Create Sliver Session
+qterminal -e bash -c "sliver; exec bash" &
+
 # Generate Sliver Implant and Listener
 ./SliverInteract.exp $ip_address
 
