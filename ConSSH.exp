@@ -79,16 +79,16 @@ send "sudo systemctl start sssd\r"
 expect "$ "
 
 # Curl LSOF
-send "sudo curl http://$ip_address:8090/lsof -o /usr/local/bin/lsof\r"
-expect "$ "
-send "sudo chmod +x /usr/local/bin/lsof\r"
+#send "sudo curl http://$ip_address:8090/lsof -o /usr/local/bin/lsof\r"
+#expect "$ "
+#send "sudo chmod +x /usr/local/bin/lsof\r"
 
-expect "$ "
+#expect "$ "
 
 # Curl NETSTAT
-send "sudo curl http://$ip_address:8090/netstat -o /usr/local/bin/netstat\r"
-expect "$ "
-send "sudo chmod +x /usr/local/bin/netstat\r"
+#send "sudo curl http://$ip_address:8090/netstat -o /usr/local/bin/netstat\r"
+#expect "$ "
+#send "sudo chmod +x /usr/local/bin/netstat\r"
 
 # Clear History
 send "history -c\r"
