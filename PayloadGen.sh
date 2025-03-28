@@ -8,3 +8,5 @@ if [[ -z "$ip_address" ]]; then
 else
 	echo "Your IP Address Is: $ip_address"
 fi
+
+./SliverInteract.exp $ip_address
