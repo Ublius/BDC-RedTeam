@@ -44,7 +44,7 @@ windows_pass=""
 qterminal -e bash -c "sliver; exec bash" &
 
 # Generate Sliver Implant and Listener
-./SliverInteract.exp $ip_address
+#./SliverInteract.exp $ip_address
 
 # Serve the Files
 qterminal -e bash -c "cd ~/Desktop/Implants; python -m http.server 8090; exec bash" &
